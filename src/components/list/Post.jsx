@@ -3,17 +3,18 @@ import styled, { keyframes } from "styled-components";
 import { colors } from "../../lib/constants/colors";
 import { useNavigate } from "react-router-dom";
 
-const Post = ({nickname, title, likecnt, url}) => {
+const Post = ({nickname, title, likecnt}) => {
   const navigate = useNavigate();
 
   return(
     <PostContainer>
       <PostNick onClick={() => navigate(`/api/postlist:postId`)}>닉넴{nickname}</PostNick>   
+      <PostTitle onClick={() => navigate(`/api/postlist:postId`)}>타이틀{title}</PostTitle>
       <LikectnWrap>
         <LikeSymbol >❤️</LikeSymbol>
         <LikeCtnN>100{likecnt}</LikeCtnN>
       </LikectnWrap>
-      <PostTitle onClick={() => navigate(`/api/postlist:postId`)}>타이틀{title}</PostTitle>
+      
     </PostContainer>
   )
 }
