@@ -8,9 +8,13 @@ import Header from "../components/common/Header";
 import Post from "../components/list/Post";
 
 
+
+
 const List = () => {
   const navigate = useNavigate()
   // const recipeContents = useSelector((module) => module.recipe.recipe) 
+
+
   
   return(
     <div>
@@ -21,8 +25,7 @@ const List = () => {
           >등록하기</TestBtn>
       </BtnWrap>
       <PostContainer>
-        <Post /><Post /><Post /><Post />
-        <Post />
+        <Post/>
       </PostContainer>
     </div>
   )
@@ -84,3 +87,5 @@ const TestBtn = styled.button`
 
   
 `
+
+

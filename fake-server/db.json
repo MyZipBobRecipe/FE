@@ -2,9 +2,33 @@
   "recipies": [
       {
           "id": 1,
-          "nickname": "testNickname",
-          "title": "testTitle",
-          "likecnt": 0
+          "nickname": "testNickname1",
+          "title": "testTitle1",
+          "recommended": 100
+      },
+      {
+        "id": 2,
+        "nickname": "testNickname2",
+        "title": "testTitle2",
+        "recommended": 101
+      },
+      {
+        "id": 3,
+        "nickname": "testNickname3",
+        "title": "testTitle3",
+        "recommended": 103
+      },
+      {
+        "id": 4,
+        "nickname": "testNickname4",
+        "title": "testTitle4",
+        "recommended": 104
+      },
+      {
+        "id": 5,
+        "nickname": "testNickname5",
+        "title": "testTitle5",
+        "recommended": 105
       }
   ]
 }
