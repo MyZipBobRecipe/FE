@@ -1,9 +1,10 @@
 {
-  "memo": [
+  "recipies": [
       {
           "id": 1,
-          "title": "첫 메모 제목",
-          "body": "첫 메모 내용"
+          "nickname": "testNickname",
+          "title": "testTitle",
+          "likecnt": 0
       }
   ]
 }

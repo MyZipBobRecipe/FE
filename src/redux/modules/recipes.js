@@ -16,7 +16,6 @@ const initialState = {
     nickname: "testNickname",
     title: "testTitle",
     likecnt: parseInt(0),
-    url: "testUrl",
     },
   ]
 };
