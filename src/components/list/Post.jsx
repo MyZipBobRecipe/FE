@@ -10,45 +10,52 @@ const Post = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const initialState = {
-    nickname: "",
-    title: "",
-    recommended: 0,
-  }
 
-  const [post, setPost] = useState(initialState);
+
+  const [post, setPost] = useState([]);
 
   // // axios를 통해 get 요청을 하는 함수 예제
   // // 비동기처리를 위해 async/await 사용.
   const fetchPost = async () => {
     const { data } = await axios.get("http://localhost:3001/recipies");
+    // const { data } = await axios.get("http://15.164.169.141:8080/article/page?page=1");
+    console.log(data)
     setPost( data ); // 서버로부터 fetching한 데이터를 useState의 state로 set
   }
 
-  // // 생성한 함수를 컴포넌트가 mount 됐을 때 실행하기 위해 useEffect 사용.
-  // useEffect(() => {
-  //   // effect구분에 생성한 함수를 넣어 실행
-  //   fetchRecipies();
-  // }, [])
-  
+  // 생성한 함수를 컴포넌트가 mount 됐을 때 실행하기 위해 useEffect 사용.
+  useEffect(() => {
+    // effect구분에 생성한 함수를 넣어 실행
+    fetchPost();
+  }, [])
   
 
+  // //어떤 요청을 보낼 지, 별칭 메서드 사용
+  // axios.get("http://15.164.169.141:8080/article/page?page=1")
+
+
   return(
-    <PostContainer>
+    <div>
       {/* <PostNick onClick={() => navigate(`/api/postlist:postId`)}>닉넴{nickname},</PostNick>    */}
-      <PostNick>{post.nickname}</PostNick>   
-      <PostTitle >{post.title}</PostTitle>
-      <LikectnWrap>
-        <LikeSymbol >❤️</LikeSymbol>
-        <LikeCtnN>{post.recommended}</LikeCtnN>
-      </LikectnWrap>
       
-    </PostContainer>
+      {post.map((item, index) => {
+        return(
+          <PostContainer>
+            <PostNick>{item.nickname}</PostNick>
+            <PostTitle >{item.title}</PostTitle>
+            <LikectnWrap>
+              <LikeSymbol >❤️</LikeSymbol>
+              <LikeCtnN>{item.recommended}</LikeCtnN>
+            </LikectnWrap>
+          </PostContainer>
+        )
+      })}
+      
+    </div>
   )
 }
 
 export default Post;
-
 
 
 /*----------styled-components----------*/
