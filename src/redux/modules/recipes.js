@@ -1,3 +1,6 @@
+import {createSlice} from "red"
+
+
 // Action Value 상수
 const WANT_ACTION = 'WANT_ACTION'
 
