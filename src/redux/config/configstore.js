@@ -1,10 +1,10 @@
-import { createStore } from "redux";
-import { combineReducers } from "redux";
-import recipes from '../modules/recipes';
+import { configureStore } from "@reduxjs/toolkit";
+import zipbobSlice from "../modules/zipbobSlice";
 
-const rootReducer = combineReducers({
-  recipes: recipes,
+const store = configureStore({
+  reducer: {
+    zipbobSlice,
+  },
 });
-const store = createStore( rootReducer );
 
 export default store;
