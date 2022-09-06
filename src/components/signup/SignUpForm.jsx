@@ -21,20 +21,20 @@ const SignUpForm = () => {
   };
 
 
-  const [login, setLogin] = useState(initialState);
+  const [signup, setSignup] = useState(initialState);
 
   // const [login, setLogin] = useState([]);
 
   // event handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    setLogin({ ...login, [name]: value});
+    setSignup({ ...signup, [name]: value});
   };
 
   const signUp_handler = async (event) => {
     // 유효성 검증 코드
     event.preventDefault();
-    if ( login.email.trim() === "" || login.password.trim() === "" || login.nickname.trim() === "" ){
+    if ( signup.email.trim() === "" || signup.password.trim() === "" || signup.nickname.trim() === "" ){
       return alert("모든 칸을 채워주세요!")
     };
     // console.log(login)
@@ -42,8 +42,8 @@ const SignUpForm = () => {
     try {
 
       // const { data } = await axios.post("http://localhost:3001/login", {...login});
-      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...login });
-      setLogin(initialState)
+      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...signup });
+      setSignup(initialState)
       
       if (data.ok) {
 
@@ -59,7 +59,7 @@ const SignUpForm = () => {
 
     } catch {
 
-      setLogin(initialState)    
+      setSignup(initialState)    
       window.alert("다른 아이디와 닉네임을 입력해주세요..!")
 
     }
@@ -75,7 +75,7 @@ const SignUpForm = () => {
             <input
               type="text"
               name="email"
-              value={login.email}
+              value={signup.email}
               onChange={onChangeHandler}
               maxLength="10"
             />
@@ -86,7 +86,7 @@ const SignUpForm = () => {
             <input
               type="password"
               name="password"
-              value={login.password}
+              value={signup.password}
               onChange={onChangeHandler}
               maxLength="15"
             />
@@ -97,7 +97,7 @@ const SignUpForm = () => {
             <input
               type="text"
               name="nickname"
-              value={login.nickname}
+              value={signup.nickname}
               onChange={onChangeHandler}
               maxLength="15"
             />
