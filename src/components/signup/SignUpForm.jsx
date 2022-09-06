@@ -31,48 +31,43 @@ const SignUpForm = () => {
     setLogin({ ...login, [name]: value});
   };
 
-  // const onSubmitHandler = (event) => {
-  //   event.preventDefault();
-  //   if ( login.email.trim() === "" || login.password.trim() === "" || login.nickname.trim() === "" ){
-  //     return alert("모든 칸을 채워주세요!") //alert 왜 안 뜰까?
-  //   };
-  //   console.log(login)
-  //   axios.post("http://localhost:3001/login", {...login})
-  //   // axios.post("http://15.164.169.141:8080/auth/signup", {...login})
-    
-  //   setLogin(initialState)
-  //   navigate('/api/postlist')
-  // };
-
-
   const signUp_handler = async (event) => {
     // 유효성 검증 코드
     event.preventDefault();
     if ( login.email.trim() === "" || login.password.trim() === "" || login.nickname.trim() === "" ){
       return alert("모든 칸을 채워주세요!")
     };
-    console.log(login)
+    // console.log(login)
 
-    const { data } = await axios.post("http://localhost:3001/login", {...login});
-    // const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", {...login});
-    
-    console.log("data:",data)
-    if (data.ok) {
+    try {
+
+      // const { data } = await axios.post("http://localhost:3001/login", {...login});
+      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...login });
       setLogin(initialState)
-      navigate('/api/postlist')
-    } else {
-      setLogin(initialState)
-      window.alert("무언가 잘못 되었습니다..!")
-      console.log("data:",data)
+      
+      if (data.ok) {
+
+        window.alert("가입을 환영합니다 🎉")
+        console.log("newMemberSignUp: ",data)
+        navigate('/api/postlist')
+
+      } else {
+        console.log("Not Ok")
+        console.error(data)
+        // 데이터는 넘어가는데, 왜 ok가 안되는가?
+      };
+
+    } catch {
+
+      setLogin(initialState)    
+      window.alert("다른 아이디와 닉네임을 입력해주세요..!")
+
     }
-
+    
   };
-
-
 
   return (
     <StForm>
-      {/* <form onSubmit={onSubmitHandler}> */}
       <form onSubmit={signUp_handler}>
         <div>
           <div>
@@ -113,7 +108,6 @@ const SignUpForm = () => {
             <div>
               <CustomButton
               title="가입하기" type="submit"
-              
               />
             </div>
           </div>
