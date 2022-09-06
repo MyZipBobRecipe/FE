@@ -21,7 +21,7 @@ const List = () => {
       <Header />
       <BtnWrap>
           <TestBtn color={colors.black}
-            onClick={() => navigate(`/api/postlist/create`)}
+            onClick={() => navigate(`/article`)}
           >등록하기</TestBtn>
       </BtnWrap>
       <PostContainer>

@@ -58,7 +58,7 @@ const HeaderLogo = styled.img`
   color: ${props => props.color};
   cursor: default;
   
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 615px){
    font-size : 10vw;
    display: flex;
    align-items: center;
