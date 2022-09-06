@@ -109,6 +109,12 @@ const SignUpForm = () => {
               <CustomButton
               title="가입하기" type="submit"
               />
+              <CustomButton
+              title="로그인"
+                  onClick={() => {
+                    navigate("/auth/login");
+                  }}
+              />
             </div>
           </div>
         </div>

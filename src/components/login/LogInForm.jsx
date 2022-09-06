@@ -32,22 +32,23 @@ const LoginForm = () => {
   const logIn_handler = async (event) => {
     // 유효성 검증 코드
     event.preventDefault();
-    if ( signup.email.trim() === "" || signup.password.trim() === "" || signup.nickname.trim() === "" ){
+    if ( login.email.trim() === "" || login.password.trim() === "" ){
+      console.log(login)
       return alert("모든 칸을 채워주세요!")
     };
-    // console.log(login)
+    console.log(login)
 
     try {
 
       // const { data } = await axios.post("http://localhost:3001/login", {...login});
-      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...signup });
-      setSignup(initialState)
+      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...login });
+      setLogin(initialState)
       
       if (data.ok) {
 
-        window.alert("가입을 환영합니다 🎉")
-        console.log("newMemberSignUp: ",data)
-        navigate('/api/postlist')
+        window.alert("나의 집밥 레시피에 오신 것을 환영합니다 🎉")
+        console.log("memberLogIn: ",data)
+        navigate('/api/postlist') //go home
 
       } else {
         console.log("Not Ok")
@@ -56,9 +57,9 @@ const LoginForm = () => {
       };
 
     } catch {
-
-      setSignup(initialState)    
-      window.alert("다른 아이디와 닉네임을 입력해주세요..!")
+      window.alert("회원 정보가 없습니다 🧐")
+      setLogin(initialState)    
+      
 
     }
     
@@ -67,14 +68,14 @@ const LoginForm = () => {
 
   return (
     <StForm>
-      <form>
+      <form onSubmit={logIn_handler}>
         <div>
           <div>
             <label>아이디</label> 
             <input
               type="text"
-              name="loginId"
-              value={login.loginId}
+              name="email"
+              value={login.email}
               onChange={onChangeHandler}
               maxLength="10"
             />
@@ -97,17 +98,20 @@ const LoginForm = () => {
               <CustomButton
               title="회원가입"
                   onClick={() => {
-                    navigate("signup");
+                    navigate("/auth/signup");
                   }}
               />
               <CustomButton
-                title="로그인"/>
+                title="로그인" type="submit"
+                
+                />
 
                 <CustomButton
-                title="글 작성"
+                title="글 작성" 
                 onClick={() => {
                     navigate("create");
-                  }}/>
+                  }}
+                  />
 
                 <CustomButton
                 title="다시 작성"
