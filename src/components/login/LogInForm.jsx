@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -14,8 +15,8 @@ const LoginForm = () => {
   
 //초기값
   const initialState = {
-    loginId: "",
-    password:""
+    email: "",
+    password: ""
   };
 
 
@@ -28,6 +29,29 @@ const LoginForm = () => {
     setLogin({ ...login, [name]: value});
   };
 
+
+  const logIn_handler = async (event) => {
+    // 유효성 검증 코드
+    event.preventDefault();
+    if ( login.email.trim() === "" || login.password.trim() === "" || login.nickname.trim() === "" ){
+      return alert("모든 칸을 채워주세요!")
+    };
+    console.log(login)
+
+    // const { data } = await axios.post("http://localhost:3001/login", {...login});
+    const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", {...login});
+    
+    console.log("data:",data)
+    if (data.ok) {
+      setLogin(initialState)
+      navigate('/api/postlist')
+    } else {
+      setLogin(initialState)
+      window.alert("무언가 잘못 되었습니다..!")
+      console.log("data:",data) // 데이터는 넘어가는데, 왜 alert가 뜨는가?
+    }
+
+  };
 
 
   return (
