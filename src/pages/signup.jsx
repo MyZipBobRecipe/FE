@@ -5,15 +5,18 @@ import Header from "../components/common/Header";
 
 const Signup = () => {
   return (
-    <StAddForm>
+    <>
       <Header />
-      <SignUpForm />
-    </StAddForm>
+      <StAddForm>
+      < SignUpForm />
+      </StAddForm>
+    </>
+    
   );
 };
 
 export default Signup;
 
 const StAddForm = styled.div`
-  /* padding-top: 140px; */
+  padding-top: 70px;
 `;

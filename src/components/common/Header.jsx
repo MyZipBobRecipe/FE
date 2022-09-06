@@ -53,7 +53,8 @@ const HeaderLogo = styled.img`
   `
 
   const HeaderTitle = styled.h1`
-  font-size: 5.5vw; 
+  font-family: 'Dongle', sans-serif;
+  font-size: 10vh; 
   color: ${props => props.color};
   cursor: default;
   
@@ -62,6 +63,10 @@ const HeaderLogo = styled.img`
    display: flex;
    align-items: center;
    justify-content: center;
+  }
+
+  @media screen and (min-height: 800px){
+   font-size : 10vw;
   }
 `
 

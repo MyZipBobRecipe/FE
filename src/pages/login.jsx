@@ -5,15 +5,18 @@ import LoginForm from "../components/login/LogInForm";
 
 const Login = () => {
   return (
+    <>
+    <Header />
     <StAddForm>
-      <Header />
       <LoginForm />
     </StAddForm>
+    </>
+    
   );
 };
 
 export default Login;
 
 const StAddForm = styled.div`
-  padding-top: 140px;
+  margin-top: 120px;
 `;

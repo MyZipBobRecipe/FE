@@ -52,14 +52,18 @@ const SignUpForm = () => {
       return alert("모든 칸을 채워주세요!")
     };
     console.log(login)
-    // const { data } = await axios.post("http://localhost:3001/login", {...login});
-    const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", {...login});
 
+    const { data } = await axios.post("http://localhost:3001/login", {...login});
+    // const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", {...login});
+    
+    console.log("data:",data)
     if (data.ok) {
       setLogin(initialState)
       navigate('/api/postlist')
     } else {
+      setLogin(initialState)
       window.alert("무언가 잘못 되었습니다..!")
+      console.log("data:",data)
     }
 
   };
