@@ -19,6 +19,7 @@ const Post = () => {
   const fetchPost = async () => {
     const { data } = await axios.get("http://localhost:3001/recipies");
     // const { data } = await axios.get("http://15.164.169.141:8080/article/page?page=1");
+    
     console.log(data)
     setPost( data ); // 서버로부터 fetching한 데이터를 useState의 state로 set
   }
@@ -41,10 +42,10 @@ const Post = () => {
       {post.map((item, index) => {
         return(
           <PostContainer>
-            <PostNick>{item.nickname}</PostNick>
-            <PostTitle >{item.title}</PostTitle>
+            <PostNick>{item.memberNickname}</PostNick>
+            <PostTitle >{item.articleTitle}</PostTitle>
             <LikectnWrap>
-              <LikeSymbol >❤️</LikeSymbol>
+              <LikeSymbol  >❤️</LikeSymbol>
               <LikeCtnN>{item.recommended}</LikeCtnN>
             </LikectnWrap>
           </PostContainer>

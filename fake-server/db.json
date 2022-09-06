@@ -1,34 +1,45 @@
 {
   "recipies": [
       {
-          "id": 1,
-          "nickname": "testNickname1",
-          "title": "testTitle1",
+          "articleId": 1,
+          "memberNickname": "testmemberNickname1",
+          "articleTitle": "testarticleTitle1",
+          "articleBody": "testDescription",
           "recommended": 100
       },
       {
-        "id": 2,
-        "nickname": "testNickname2",
-        "title": "testTitle2",
+        "articleId": 2,
+        "memberNickname": "testmemberNickname2",
+        "articleTitle": "testarticleTitle2",
+        "articleBody": "testDescription testDescription",
         "recommended": 101
       },
       {
-        "id": 3,
-        "nickname": "testNickname3",
-        "title": "testTitle3",
+        "articleId": 3,
+        "memberNickname": "testmemberNickname3",
+        "articleTitle": "testarticleTitle3",
+        "articleBody": "testDescription testDescription testDescription",
         "recommended": 103
       },
       {
-        "id": 4,
-        "nickname": "testNickname4",
-        "title": "testTitle4",
+        "articlearticleId": 4,
+        "memberNickname": "testmemberNickname4",
+        "articleTitle": "testarticleTitle4",
+        "articleBody": "testDescription testDescription testDescription testDescription",
         "recommended": 104
       },
       {
-        "id": 5,
-        "nickname": "testNickname5",
-        "title": "testTitle5",
+        "articleId": 5,
+        "memberNickname": "testmemberNickname5",
+        "articleTitle": "testarticleTitle5",
+        "articleBody": "testDescription testDescription testDescription testDescription testDescription",
         "recommended": 105
       }
+  ],
+
+  "login": [
+    {
+      
+    }
   ]
 }

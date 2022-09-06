@@ -3,8 +3,13 @@ import styled from "styled-components";
 import DetailcommentList from "./DetailCommentList";
 
 const Detailcomment = () => {
+
+  const onChangeHandler = () => {
+
+  };
+
   return(
-    <div>
+    <ReplyWrap>
       <StDiv>
         <StInput />
         <button>댓글생성</button>
@@ -14,13 +19,19 @@ const Detailcomment = () => {
       <DetailcommentList/>
       <DetailcommentList/>
       <DetailcommentList/>
-    </div>
+    </ReplyWrap>
   )
 }
 
 export default Detailcomment;
 
+const ReplyWrap = styled.div`
+  /* overflow: scroll; */
+  width: 200px;
+`
+
 const StDiv = styled.div`
+  width: max-content;
   margin-bottom: 10px;
 `
 

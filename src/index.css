@@ -1,11 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Gowun+Dodum&display=swap');
 
-h1 {
-  font-family: 'Dongle', sans-serif;
-}
+
+
 
 * {
   font-family: 'Gowun Dodum', sans-serif;
   margin: 0px;
   padding: 0px;
+
+  
+};
+
+h1 {
+  font-family: 'Dongle', sans-serif;
+};
+
+p {
+  font-size: 1rem;
+};
+
+button {
+  font-size: 1rem;
 }
+

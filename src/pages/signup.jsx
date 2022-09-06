@@ -15,5 +15,5 @@ const Signup = () => {
 export default Signup;
 
 const StAddForm = styled.div`
-  padding-top: 140px;
+  /* padding-top: 140px; */
 `;
