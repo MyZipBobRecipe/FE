@@ -16,8 +16,8 @@ const CreateForm = () => {
 //초기값
   const initialState = {
     title: "",
-    ingredient:"",
-    description: ""
+    // ingredient:"",
+    body: ""
   };
 
 
@@ -31,10 +31,45 @@ const CreateForm = () => {
   };
 
 
+  const post_handler = async (event) => {
+    // 유효성 검증 코드
+    event.preventDefault();
+    if ( post.title.trim() === "" || post.body.trim() === "" ){
+      console.log(post)
+      return alert("모든 칸을 채워주세요!")
+    };
+    console.log(post)
+
+    try {
+
+      // const { data } = await axios.post("http://localhost:3001/recipies", {...post});
+      const { data } = await axios.post("http://15.164.169.141:8080/article", { ...post });
+      setPost(initialState)
+      
+      if (data.ok) {
+
+        window.alert("레시피가 등록되었습니다!")
+        console.log("newPosting: ",data)
+        navigate('/api/postlist') //go home
+
+      } else {
+        console.log("Not Ok")
+        console.error(data)
+        // 데이터는 넘어가는데, 왜 ok가 안되는가?
+      };
+
+    } catch {
+      window.alert("무엇인가 잘못되었습니다! 😱")
+      setPost(initialState)    
+      
+
+    }
+    
+  };
 
   return (
     <StForm>
-      <form>
+      <form onSubmit={post_handler}>
         <div>
           <div>
             <label>레시피 이름</label> 
@@ -47,7 +82,7 @@ const CreateForm = () => {
             />
           </div>
           
-          <div>
+          {/* <div>
             <label>재료</label>
             <input
               type="text"
@@ -56,16 +91,17 @@ const CreateForm = () => {
               onChange={onChangeHandler}
               maxLength="15"
             />
-          </div>
+          </div> */}
 
           <div>
-            <label>레시피</label>
-            <input
+            {/* <label>레시피</label> */}
+            <StTextarea
+              placeholder="레시피를 입력해주세요!"
               type="text"
-              name="description"
-              value={post.description}
+              name="body"
+              value={post.body}
               onChange={onChangeHandler}
-              maxLength="15"
+              // maxLength="15"
             />
           </div>
          
@@ -74,10 +110,8 @@ const CreateForm = () => {
             <div>
 
                 <CustomButton
-                title="글 작성"
-                onClick={() => {
-                    navigate("/");
-                  }}/>
+                title="글 작성" type="submit"
+                />
 
                 <CustomButton
                 title="다시 작성"
@@ -103,3 +137,17 @@ const StForm = styled.div`
   font-size: 18px;
   text-align: center;
 `;
+
+const StTextarea = styled.textarea`
+  margin-top: 20px;
+  width: 350px;
+  height: 150px;
+  border-radius: 4px;
+  ::placeholder {
+      padding-top: 15px;
+      color: black;
+      font-size: 18px;
+      text-align: center;
+  }
+  
+`

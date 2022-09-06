@@ -6,15 +6,17 @@ import CreateForm from "../components/form/CreateForm";
 const Create = () => {
 
   return (
-    <StAddForm>
-      <Header/>
-      <CreateForm />
-    </StAddForm>
+    <>
+      <Header />
+      <StAddForm>
+        <CreateForm />
+      </StAddForm>
+    </>
   )
 }
 
 export default Create;
 
 const StAddForm = styled.div`
-  padding-top: 140px;
+  padding-top: 70px;
 `;

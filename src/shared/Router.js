@@ -12,7 +12,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/api/postlist' element={<List />} />
-        <Route path='/api/postlist/create' element={<Create />} />
+        <Route path='/article' element={<Create />} />
         <Route path='/api/postlist:postId' element={<Detail />} />
         <Route path='/auth/login' element={<Login />} />
         <Route path='/auth/signup' element={<Signup />} />
