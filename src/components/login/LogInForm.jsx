@@ -19,7 +19,6 @@ const LoginForm = () => {
     password: ""
   };
 
-
   const [login, setLogin] = useState(initialState);
 
 
@@ -33,24 +32,36 @@ const LoginForm = () => {
   const logIn_handler = async (event) => {
     // 유효성 검증 코드
     event.preventDefault();
-    if ( login.email.trim() === "" || login.password.trim() === "" || login.nickname.trim() === "" ){
+    if ( signup.email.trim() === "" || signup.password.trim() === "" || signup.nickname.trim() === "" ){
       return alert("모든 칸을 채워주세요!")
     };
-    console.log(login)
+    // console.log(login)
 
-    // const { data } = await axios.post("http://localhost:3001/login", {...login});
-    const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", {...login});
-    
-    console.log("data:",data)
-    if (data.ok) {
-      setLogin(initialState)
-      navigate('/api/postlist')
-    } else {
-      setLogin(initialState)
-      window.alert("무언가 잘못 되었습니다..!")
-      console.log("data:",data) // 데이터는 넘어가는데, 왜 alert가 뜨는가?
+    try {
+
+      // const { data } = await axios.post("http://localhost:3001/login", {...login});
+      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...signup });
+      setSignup(initialState)
+      
+      if (data.ok) {
+
+        window.alert("가입을 환영합니다 🎉")
+        console.log("newMemberSignUp: ",data)
+        navigate('/api/postlist')
+
+      } else {
+        console.log("Not Ok")
+        console.error(data)
+        // 데이터는 넘어가는데, 왜 ok가 안되는가?
+      };
+
+    } catch {
+
+      setSignup(initialState)    
+      window.alert("다른 아이디와 닉네임을 입력해주세요..!")
+
     }
-
+    
   };
 
 
