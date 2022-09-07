@@ -32,33 +32,37 @@ const SignUpForm = () => {
   };
 
   const signUp_handler = async (event) => {
+
     // 유효성 검증 코드
     event.preventDefault();
     if ( signup.email.trim() === "" || signup.password.trim() === "" || signup.nickname.trim() === "" ){
       return alert("모든 칸을 채워주세요!")
     };
-    // console.log(login)
 
     try {
 
-      // const { data } = await axios.post("http://localhost:3001/login", {...login});
-      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...signup });
+      // const { data } = await axios.post("http://localhost:3001/login", {...signup}); //json-server
+      const response = await axios.post("http://15.164.169.141:8080/auth/signup", { ...signup })
+      // .then(response => console.log("response: ",response));
+      console.log("👏 Axios Work >>> ", response)
       setSignup(initialState)
       
-      if (data.ok) {
+      
+      
+      if (response.status === 200) {
 
         window.alert("가입을 환영합니다 🎉")
-        console.log("newMemberSignUp: ",data)
-        navigate('/api/postlist')
+        console.log("newMemberSignUp: ",response.data)
+        navigate('/auth/login')
 
       } else {
         console.log("Not Ok")
-        console.error(data)
+        console.error(response)
         // 데이터는 넘어가는데, 왜 ok가 안되는가?
       };
 
-    } catch {
-
+    } catch (error) {
+      console.error(error)
       setSignup(initialState)    
       window.alert("다른 아이디와 닉네임을 입력해주세요..!")
 

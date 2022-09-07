@@ -20,7 +20,7 @@ const Post = () => {
 
     // const { data } = await axios.get("http://localhost:3001/recipies");
     const { data } = await axios.get("http://15.164.169.141:8080/article/page?page=1");
-    console.log(data.content)
+    // console.log(data.content)
 
     setPost( data.content ); // 서버로부터 fetching한 데이터를 useState의 state로 set
   }
@@ -41,7 +41,7 @@ const Post = () => {
       
       {post.map((item, index) => {
         return(
-          <PostContainer onClick={() => navigate("/api/postlist:${itemId}")}>
+          <PostContainer key={item.articleId} onClick={() => navigate("/api/postlist:${itemId}")}>
             <PostNick>{item.memberNickname}</PostNick>
             <PostTitle >{item.articleTitle}</PostTitle>
             <LikectnWrap>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import logo from '../../assets/logo.svg';
 import { colors } from "../../lib/constants/colors";
@@ -6,6 +7,25 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [nick, setNick] = useState('식객 아무개');
+
+  const getNick = async () => {
+    const token = localStorage.getItem('wtw-token') || '';
+    const response = await axios.get("http://15.164.169.141:8080/member/me", {
+    headers: {
+      'Authorization': token, //header에 담아줌
+    }  
+    });
+    
+    console.log("👏 Axios Work >>> ", response)
+    setNick(response.data.nickname);
+    console.log(nick)
+  }
+
+  useEffect(() => {
+    getNick();
+  },[])
+
   return (
     <HeaderWrap color={colors.warmgray}>
       
@@ -13,7 +33,7 @@ const Header = () => {
 
       <HeaderTitle color={colors.green} onClick={() => navigate(`/api/postlist`)}>나의 집밥 레시피</HeaderTitle>
       <UserWrap>
-        <StUser >닉네임</StUser>
+        <StUser>{nick}님</StUser>
         <UserNav onClick={() => {navigate(`/auth/signup`)}}>회원가입</UserNav>
         <UserNav onClick={() => {navigate(`/auth/login`)}}>로그인</UserNav>
       </UserWrap>
