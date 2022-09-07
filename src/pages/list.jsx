@@ -17,44 +17,23 @@ const List = () => {
 
   
   return(
-    <div>
+    <Listcontainer>
       <Header />
       <BtnWrap>
           <TestBtn color={colors.black}
             onClick={() => navigate(`/article`)}
           >등록하기</TestBtn>
       </BtnWrap>
-      <PostContainer>
-        <Post/>
-      </PostContainer>
-    </div>
+      <Post/>
+    </Listcontainer>
   )
 };
 
 export default List;
 
-const PostContainer = styled.div`
-  width: 95%;
-  margin: auto;
-  
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  
-  @media screen and (max-width: 900px){
-    /* width: 80%; */
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 40px;
-  }
+const Listcontainer = styled.div`
+  margin: 0px auto;
 
-  @media screen and (max-width: 600px){
-    grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 5px;
-  }
-  
-  
 `
 
 const BtnWrap = styled.div`
