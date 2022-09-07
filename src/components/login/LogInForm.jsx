@@ -33,32 +33,41 @@ const LoginForm = () => {
     // 유효성 검증 코드
     event.preventDefault();
     if ( login.email.trim() === "" || login.password.trim() === "" ){
-      console.log(login)
+      
       return alert("모든 칸을 채워주세요!")
     };
-    console.log(login)
+    // console.log(login)
 
     try {
 
       // const { data } = await axios.post("http://localhost:3001/login", {...login});
-      const { data } = await axios.post("http://15.164.169.141:8080/auth/signup", { ...login });
+      const response = await axios.post("http://15.164.169.141:8080/auth/login", 
+      { ...login }, 
+      // { withCredentials: true } 
+      );
+
+      console.log("👏 Axios Work >>> ", response)
       setLogin(initialState)
+            
       
-      if (data.ok) {
+      if (response.status === 200) {
 
         window.alert("나의 집밥 레시피에 오신 것을 환영합니다 🎉")
-        console.log("memberLogIn: ",data)
+        localStorage.setItem('wtw-token', response.data.accessToken)
+        console.log("memberLogIn: ",response.data)
+
         navigate('/api/postlist') //go home
 
       } else {
         console.log("Not Ok")
-        console.error(data)
+        console.error(response)
         // 데이터는 넘어가는데, 왜 ok가 안되는가?
       };
 
     } catch {
       window.alert("회원 정보가 없습니다 🧐")
       setLogin(initialState)    
+      console.log("IntoCatch")
       
 
     }
