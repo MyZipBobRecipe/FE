@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { colors } from "../../lib/constants/colors";
 import LikeHeart from "../list/LikeHeart";
@@ -8,19 +9,39 @@ import Detailcomment from "./DetailComment";
 
 const DetailContainer = () => {
 
+  const [detail, setDetail] = useState([]);
+
+  const getDetail = async () => {
+
+    // const { data } = await axios.get("http://localhost:3001/recipies");
+    const { data } = await axios.get("http://15.164.169.141:8080/article/long?id");
+    console.log(data.content)
+
+    setDetail( data.content ); // 서버로부터 get
+  }
+
+  useEffect(() => {
+    getDetail();
+  }, [])
+
 
   return(
     <ModalContainer>
       <ModalContentsWrap>
+
+
         <DetailCentent>
-          <div>memberNikcname</div>
-          <h2>title</h2>
+          <div>{detail.memberNikcname}</div>
+          <h2>{detail.title}</h2>
           <LikeHeart/>         
           <BodyContainer>
+            {detail.body}
             descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc
           </BodyContainer>
         </DetailCentent>
         <Detailcomment/>  
+
+
       </ModalContentsWrap>     
     </ModalContainer>
   )
@@ -38,6 +59,8 @@ const ModalContainer = styled.div`
   border-radius: 8px;
 
   font-size: 1.2rem;
+
+  
 `
 
 const ModalContentsWrap = styled.div`
