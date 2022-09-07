@@ -17,11 +17,12 @@ const Post = () => {
   // // axios를 통해 get 요청을 하는 함수 예제
   // // 비동기처리를 위해 async/await 사용.
   const fetchPost = async () => {
-    const { data } = await axios.get("http://localhost:3001/recipies");
-    // const { data } = await axios.get("http://15.164.169.141:8080/article/page?page=1");
-    
-    console.log(data)
-    setPost( data ); // 서버로부터 fetching한 데이터를 useState의 state로 set
+
+    // const { data } = await axios.get("http://localhost:3001/recipies");
+    const { data } = await axios.get("http://15.164.169.141:8080/article/page?page=1");
+    console.log(data.content)
+
+    setPost( data.content ); // 서버로부터 fetching한 데이터를 useState의 state로 set
   }
 
   // 생성한 함수를 컴포넌트가 mount 됐을 때 실행하기 위해 useEffect 사용.
@@ -31,8 +32,7 @@ const Post = () => {
   }, [])
   
 
-  // //어떤 요청을 보낼 지, 별칭 메서드 사용
-  // axios.get("http://15.164.169.141:8080/article/page?page=1")
+  
 
 
   return(
@@ -41,12 +41,13 @@ const Post = () => {
       
       {post.map((item, index) => {
         return(
-          <PostContainer>
+          <PostContainer onClick={() => navigate("/api/postlist:${itemId}")}>
             <PostNick>{item.memberNickname}</PostNick>
             <PostTitle >{item.articleTitle}</PostTitle>
             <LikectnWrap>
               <LikeSymbol  >❤️</LikeSymbol>
-              <LikeCtnN>{item.recommended}</LikeCtnN>
+              {/* <LikeCtnN>{item.recommended}</LikeCtnN> */}
+              <LikeCtnN>{item.createdAt}</LikeCtnN> {/* test */}
             </LikectnWrap>
           </PostContainer>
         )
