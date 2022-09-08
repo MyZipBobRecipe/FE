@@ -16,17 +16,19 @@ const CreateForm = () => {
 //초기값
   const initialState = {
     title: "",
-    // ingredient:"",
     body: ""
   };
 
   const [post, setPost] = useState(initialState);
+  
 
   // event handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setPost({ ...post, [name]: value});
   };
+
+  const token = localStorage.getItem('wtw-token');
 
   const post_handler = async (event) => {
     // 유효성 검증 코드
@@ -39,13 +41,12 @@ const CreateForm = () => {
 
     try {
 
-      // const token = localStorage.getItem('wtw-token') || '';
       // "http://localhost:3001/recipies" //json-server
-      const response = await axios.post("http://15.164.169.141:8080/article", 
+      const response = await axios.post("http://15.164.169.141:8080/article/", 
       { ...post },
       {
         headers: {
-          Authorization: `Bearer ${response.accessToken}`, //header에 담아줌
+          Authorization: `Bearer ${token}`, //header에 담아줌
         }  
       });
       console.log("👏 Axios Work >>> ", response)
@@ -73,7 +74,16 @@ const CreateForm = () => {
     
   };
 
-  useEffect()
+  // useEffect(() => {
+  //  post_handler()
+   
+  // },[])
+
+  // useEffect(() => {
+  //   if(token !== null){
+  //     post_handler
+  //   }
+  // },SubmitEvent)
 
   return (
     <StForm>
