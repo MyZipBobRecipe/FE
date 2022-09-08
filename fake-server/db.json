@@ -1,0 +1,45 @@
+{
+  "recipies": [
+      {
+          "articleId": 1,
+          "memberNickname": "testmemberNickname1",
+          "articleTitle": "testarticleTitle1",
+          "articleBody": "testDescription",
+          "recommended": 100
+      },
+      {
+        "articleId": 2,
+        "memberNickname": "testmemberNickname2",
+        "articleTitle": "testarticleTitle2",
+        "articleBody": "testDescription testDescription",
+        "recommended": 101
+      },
+      {
+        "articleId": 3,
+        "memberNickname": "testmemberNickname3",
+        "articleTitle": "testarticleTitle3",
+        "articleBody": "testDescription testDescription testDescription",
+        "recommended": 103
+      },
+      {
+        "articlearticleId": 4,
+        "memberNickname": "testmemberNickname4",
+        "articleTitle": "testarticleTitle4",
+        "articleBody": "testDescription testDescription testDescription testDescription",
+        "recommended": 104
+      },
+      {
+        "articleId": 5,
+        "memberNickname": "testmemberNickname5",
+        "articleTitle": "testarticleTitle5",
+        "articleBody": "testDescription testDescription testDescription testDescription testDescription",
+        "recommended": 105
+      }
+  ],
+
+  "login": [
+    {
+      
+    }
+  ]
+}
