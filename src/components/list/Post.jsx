@@ -92,6 +92,7 @@ border-radius: 7px;
 border: 0.5px solid gray;
 border: 0.3px solid white;
 box-shadow: 0px 0px 10px 4px rgba(100, 100, 100, 0.1);
+/* background-color: ${colors.yellow}; */
 
 @media screen and (max-width: 900px){
     padding: 20px;

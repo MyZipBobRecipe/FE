@@ -44,7 +44,7 @@ const Header = () => {
 
       <HeaderTitle color={colors.green} onClick={() => navigate(`/api/postlist`)}>나의 집밥 레시피</HeaderTitle>
       <UserWrap>
-        <StUser>{nick}님</StUser>
+        <StUser>Welcome🙌 {nick}님</StUser>
         <UserNav onClick={() => {navigate(`/auth/signup`)}}>회원가입</UserNav>
         <UserNav onClick={() => {navigate(`/auth/login`)}}>로그인</UserNav>
       </UserWrap>

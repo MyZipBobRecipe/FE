@@ -3,20 +3,35 @@ import axios from "axios";
 import styled from "styled-components";
 import { colors } from "../../lib/constants/colors";
 import LikeHeart from "../list/LikeHeart";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Detailcomment from "./DetailComment";
+import CustomButton from "../common/CustomButton";
 
 
-const DetailContainer = ({item}) => {
+
+const DetailContainer = () => {
+
+
 
   const [detail, setDetail] = useState([]);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  // const longId = JSON.parse(id);
+  const token = localStorage.getItem('wtw-token');
 
+  // console.log("param id:", id);
+
+  // console.log(typeof id)
+
+
+  
   const getDetail = async () => {
 
     // const { data } = await axios.get("http://localhost:3001/recipies");
-    const response = await axios.get(`http://15.164.169.141:8080/article/long?id=${item.articleId}`,{
+    const response = await axios.get(`http://15.164.169.141:8080/article/one?id=${id}`,{
     headers: {
-      Authorization: `Bearer ${response.accessToken}`, //header에 담아줌
+      Authorization: `Bearer ${token}`, //header에 담아줌
     }  
     });
     
@@ -45,8 +60,14 @@ const DetailContainer = ({item}) => {
           <LikeHeart/>         
           <BodyContainer>
             {detail.body}
-            descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc
+            descdescdescde
           </BodyContainer>
+          <BtnContainer>
+          <CustomButton
+                title="뒤로가기"
+                onClick={() => {navigate('/api/postlist')}}/>
+          </BtnContainer>
+          
         </DetailCentent>
         <Detailcomment/>  
 
@@ -86,8 +107,12 @@ const BodyContainer = styled.p`
   /* width: 500px; */
   /* height: 200px; */
   
-  
  
- 
-  
+`
+
+const BtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 30px;
 `
