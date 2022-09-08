@@ -7,17 +7,26 @@ import LikeHeart from "../list/LikeHeart";
 import Detailcomment from "./DetailComment";
 
 
-const DetailContainer = () => {
+const DetailContainer = ({item}) => {
 
   const [detail, setDetail] = useState([]);
 
   const getDetail = async () => {
 
     // const { data } = await axios.get("http://localhost:3001/recipies");
-    const { data } = await axios.get("http://15.164.169.141:8080/article/long?id");
-    console.log(data.content)
-
-    setDetail( data.content ); // 서버로부터 get
+    const response = await axios.get(`http://15.164.169.141:8080/article/long?id=${item.articleId}`,{
+    headers: {
+      Authorization: `Bearer ${response.accessToken}`, //header에 담아줌
+    }  
+    });
+    
+    console.log("👏 Axios Work >>> ", response)
+    setDetail( response.data ); // 서버로부터 get
+    console.log(detail)
+  
+  
+  
+  
   }
 
   useEffect(() => {

@@ -8,23 +8,34 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   const [nick, setNick] = useState('식객 아무개');
+  const token = localStorage.getItem('wtw-token');
+  const nickname = localStorage.getItem('nickname');
+
+
+  
 
   const getNick = async () => {
-    const token = localStorage.getItem('wtw-token') || '';
+    
     const response = await axios.get("http://15.164.169.141:8080/member/me", {
     headers: {
-      'Authorization': token, //header에 담아줌
+      Authorization: `Bearer ${token}`, //header에 담아줌
     }  
     });
     
     console.log("👏 Axios Work >>> ", response)
-    setNick(response.data.nickname);
+    
     console.log(nick)
   }
 
   useEffect(() => {
-    getNick();
+    if(token !== null){
+      getNick();
+      setNick(nickname);
+    }
+    
   },[])
+
+  console.log(nick)
 
   return (
     <HeaderWrap color={colors.warmgray}>
@@ -99,19 +110,6 @@ const UserWrap = styled.div`
   @media screen and (max-width: 600px){
     margin-bottom: 20px;
   }
-
-  /* @media screen and (max-width: 800px){
-
-    .material-symbols-outlined {
-      font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 48
-    }
-    https://fonts.google.com/icons
-  } */
-  
 `
 
 const StUser = styled.div`

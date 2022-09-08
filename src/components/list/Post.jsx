@@ -41,7 +41,7 @@ const Post = () => {
       
       {post.map((item, index) => {
         return(
-          <PostContainer key={item.articleId} onClick={() => navigate("/api/postlist:${itemId}")}>
+          <PostContainer key={item.articleId} onClick={() => navigate(`/api/postlist:${item.articleId}`)}>
             <PostNick>{item.memberNickname}</PostNick>
             <PostTitle >{item.articleTitle}</PostTitle>
             <LikectnWrap>

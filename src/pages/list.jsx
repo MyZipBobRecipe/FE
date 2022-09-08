@@ -12,7 +12,7 @@ import Post from "../components/list/Post";
 
 const List = () => {
   const navigate = useNavigate()
-  // const recipeContents = useSelector((module) => module.recipe.recipe) 
+  
 
 
   

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -20,16 +20,13 @@ const CreateForm = () => {
     body: ""
   };
 
-
   const [post, setPost] = useState(initialState);
-
 
   // event handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setPost({ ...post, [name]: value});
   };
-
 
   const post_handler = async (event) => {
     // 유효성 검증 코드
@@ -38,34 +35,45 @@ const CreateForm = () => {
       console.log(post)
       return alert("모든 칸을 채워주세요!")
     };
-    console.log(post)
+    // console.log(post)
 
     try {
 
-      // const { data } = await axios.post("http://localhost:3001/recipies", {...post});
-      const { data } = await axios.post("http://15.164.169.141:8080/article", { ...post });
+      // const token = localStorage.getItem('wtw-token') || '';
+      // "http://localhost:3001/recipies" //json-server
+      const response = await axios.post("http://15.164.169.141:8080/article", 
+      { ...post },
+      {
+        headers: {
+          Authorization: `Bearer ${response.accessToken}`, //header에 담아줌
+        }  
+      });
+      console.log("👏 Axios Work >>> ", response)
       setPost(initialState)
       
-      if (data.ok) {
+      if (response.status === 200) {
 
         window.alert("레시피가 등록되었습니다!")
-        console.log("newPosting: ",data)
+        console.log("newPosting: ",response.data)
         navigate('/api/postlist') //go home
 
       } else {
         console.log("Not Ok")
-        console.error(data)
+        console.error(response)
         // 데이터는 넘어가는데, 왜 ok가 안되는가?
       };
 
-    } catch {
+    } catch (error) {
       window.alert("무엇인가 잘못되었습니다! 😱")
+      console.error(error);
       setPost(initialState)    
       
 
     }
     
   };
+
+  useEffect()
 
   return (
     <StForm>

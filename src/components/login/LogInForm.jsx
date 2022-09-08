@@ -54,6 +54,7 @@ const LoginForm = () => {
 
         window.alert("나의 집밥 레시피에 오신 것을 환영합니다 🎉")
         localStorage.setItem('wtw-token', response.data.accessToken)
+        localStorage.setItem('nickname', response.data.nickname)
         console.log("memberLogIn: ",response.data)
 
         navigate('/api/postlist') //go home
